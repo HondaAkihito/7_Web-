@@ -26,6 +26,7 @@
                   <th scope="col" class="text-center">日付</th>
                   <th scope="col" class="text-center">支出金額</th>
                   <th scope="col" class="text-center">タイトル</th>
+                  <th scope="col" class="text-center"></th>
                 </tr>
               </thead>
               <tbody>
@@ -33,6 +34,7 @@
                   <td class="text-center">○~○</td>
                   <td class="text-center">0円</td>
                   <td class="text-center">タイトル</td>
+                  <td class="text-center"><button type="submit" class="btn btn-secondary">編集</button></td>
                 </tr>
               </tbody>
             </table>

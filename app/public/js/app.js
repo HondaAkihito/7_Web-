@@ -390,13 +390,25 @@ var staticRenderFns = [function () {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("タイトル")])])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("td", {
+  }, [_vm._v("タイトル")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center",
+    attrs: {
+      scope: "col"
+    }
+  })])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("td", {
     staticClass: "text-center"
   }, [_vm._v("○~○")]), _vm._v(" "), _c("td", {
     staticClass: "text-center"
   }, [_vm._v("0円")]), _vm._v(" "), _c("td", {
     staticClass: "text-center"
-  }, [_vm._v("タイトル")])])])])])])]);
+  }, [_vm._v("タイトル")]), _vm._v(" "), _c("td", {
+    staticClass: "text-center"
+  }, [_c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("編集")])])])])])])])]);
 }];
 render._withStripped = true;
 
