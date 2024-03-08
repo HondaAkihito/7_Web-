@@ -15,5 +15,5 @@
 //     return view('welcome');
 // });
 Route::get('/{any}', function() {
-    return view('sign-up');
+    return view('./sign-up/sign-up_check');
 })->where('any', '.*');
