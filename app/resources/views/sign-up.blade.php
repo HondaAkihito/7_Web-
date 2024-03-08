@@ -15,7 +15,7 @@
 <body>
 
   <div class="container">
-    <h2 class="mt-5 text-center">ログイン</h2>
+    <h2 class="mt-5 text-center">新規登録</h2>
     <form>
       <div class="form-group">
         <label for="exampleInputEmail1">メールアドレス</label>
@@ -24,11 +24,15 @@
       <div class="form-group">
         <label for="exampleInputPassword1">パスワード</label>
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="パスワードを入力">
-        <small id="emailHelp" class="form-text text-muted text-right"><a href="#">※パスワードを忘れた方はこちら</a></small>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">パスワード再確認</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="上と同じパスワードを入力">
       </div>
       <div>
-        <button type="submit" class="btn btn-primary">ログインする</button>
+        <button type="submit" class="btn btn-primary">新規登録する</button>
       </div>
+      <small id="emailHelp" class="form-text text-muted text-right"><a href="#">※ログインへ戻る</a></small>
     </form>
   </div>
 
