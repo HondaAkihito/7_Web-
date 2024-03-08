@@ -15,5 +15,5 @@
 //     return view('welcome');
 // });
 Route::get('/{any}', function() {
-    return view('./sign-up/sign-up_ok');
+    return view('./re-pw/re-pw');
 })->where('any', '.*');
