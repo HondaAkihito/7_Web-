@@ -1,12 +1,12 @@
 <template>
-    <div class="container-fluid bg-dark mb-3">
+    <div class="container-fluid bg-dark">
         <div class="container">
             <nav class="navbar navbar-dark">
                 <span class="navbar-brand mb-0 h1">Budget Management</span>
                 <div>
-                    <router-link v-bind:to="{name: 'task.create'}">
-                        <button class="btn btn-success">マイページ</button>
-                    </router-link>
+                    <button class="btn btn-success">予算登録</button>
+                    <button class="btn btn-success">支出登録</button>
+                    <button class="btn btn-success">マイページ</button>
                 </div>
             </nav>
         </div>
