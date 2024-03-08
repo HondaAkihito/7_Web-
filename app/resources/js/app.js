@@ -1,7 +1,9 @@
 import Vue from 'vue';
+import VueRouter from 'vue-router';
 import HeaderComponent from "./components/HeaderComponent";
 import BeforeHeaderComponent from "./components/BeforeHeaderComponent";
 import TopComponent from "./components/TopComponent";
+import BudgetCreateComponent from "./components/BudgetCreateComponent";
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -11,6 +13,19 @@ import TopComponent from "./components/TopComponent";
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/budget/create',
+            name: 'budget.create',
+            component: BudgetCreateComponent
+        },
+    ]
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -36,4 +51,5 @@ Vue.component('top-component', TopComponent);
 
 const app = new Vue({
     el: '#app',
+    router
 });
