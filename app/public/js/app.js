@@ -316,27 +316,27 @@ var staticRenderFns = [function () {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
-      "for": "spend_title"
+      "for": "category-title"
     }
   }, [_vm._v("タイトル")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
       type: "text",
-      id: "spend_title",
-      placeholder: "支出のタイトルを入力"
+      id: "category-title",
+      placeholder: "予算のタイトルを入力"
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
-      "for": "spend_amount"
+      "for": "category-budget"
     }
   }, [_vm._v("支出金額")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
       type: "number",
-      id: "spend_amount",
-      placeholder: "新規支出金額を入力"
+      id: "category-budget",
+      placeholder: "予算を入力"
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
@@ -347,58 +347,14 @@ var staticRenderFns = [function () {
   }, [_vm._v("日付")]), _c("br"), _vm._v(" "), _c("input", {
     attrs: {
       type: "date",
-      id: "spend_date"
+      id: "category-form_date"
     }
   })]), _vm._v(" "), _c("div", [_c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("登録")])])]), _vm._v(" "), _c("div", {
-    staticClass: "container mt-5"
-  }, [_c("nav", {
-    staticClass: "navbar"
-  }, [_c("table", {
-    staticClass: "table border"
-  }, [_c("thead", [_c("tr", [_c("th", {
-    staticClass: "text-center",
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("日付")]), _vm._v(" "), _c("th", {
-    staticClass: "text-center",
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("支出金額")]), _vm._v(" "), _c("th", {
-    staticClass: "text-center",
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("タイトル")]), _vm._v(" "), _c("th", {
-    staticClass: "text-center",
-    attrs: {
-      scope: "col"
-    }
-  })])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("td", {
-    staticClass: "text-center"
-  }, [_vm._v("○~○")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center"
-  }, [_vm._v("0円")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center"
-  }, [_vm._v("タイトル")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center"
-  }, [_c("button", {
-    staticClass: "btn btn-secondary",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("編集")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-danger",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("削除")])])])])])])])]);
+  }, [_vm._v("登録")])])])]);
 }];
 render._withStripped = true;
 
