@@ -7,7 +7,9 @@
                     <router-link v-bind:to="{name: 'budget.create'}">
                         <button class="btn btn-success">予算登録</button>
                     </router-link>
-                    <button class="btn btn-success">支出登録</button>
+                    <router-link v-bind:to="{name: 'spend.create'}">
+                        <button class="btn btn-success">支出登録</button>
+                    </router-link>
                     <button class="btn btn-success">マイページ</button>
                 </div>
             </nav>
