@@ -34,7 +34,10 @@
                   <td class="text-center">○~○</td>
                   <td class="text-center">0円</td>
                   <td class="text-center">タイトル</td>
-                  <td class="text-center"><button type="submit" class="btn btn-secondary">編集</button></td>
+                  <td class="text-center">
+                    <button type="submit" class="btn btn-secondary">編集</button>
+                    <button type="submit" class="btn btn-danger">削除</button>
+                  </td>
                 </tr>
               </tbody>
             </table>
