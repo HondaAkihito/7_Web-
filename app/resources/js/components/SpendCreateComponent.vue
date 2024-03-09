@@ -18,6 +18,43 @@
                 <button type="submit" class="btn btn-primary">登録</button>
             </div>
         </form>
+        <div class="container mt-5">
+          <nav class="navbar">
+            <table class="table border">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center align-middle">ID</th>
+                  <th scope="col" class="text-center align-middle">日付</th>
+                  <th scope="col" class="text-center align-middle">支出金額</th>
+                  <th scope="col" class="text-center align-middle">タイトル</th>
+                  <th scope="col" class="text-center align-middle"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center align-middle">1</td>
+                  <td class="text-center align-middle">○~○</td>
+                  <td class="text-center align-middle">0円</td>
+                  <td class="text-center align-middle">タイトル</td>
+                  <td class="text-center align-middle">
+                    <button class="btn btn-secondary">編集</button>
+                    <button class="btn btn-danger">削除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center align-middle">2</td>
+                  <td class="text-center align-middle">○~○</td>
+                  <td class="text-center align-middle">0円</td>
+                  <td class="text-center align-middle">タイトル</td>
+                  <td class="text-center align-middle">
+                    <button class="btn btn-secondary">編集</button>
+                    <button class="btn btn-danger">削除</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </nav>
+        </div>
     </div>
 </template>
 
