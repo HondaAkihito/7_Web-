@@ -5,6 +5,7 @@ import BeforeHeaderComponent from "./components/BeforeHeaderComponent";
 import TopComponent from "./components/TopComponent";
 import BudgetCreateComponent from "./components/BudgetCreateComponent";
 import SpendCreateComponent from "./components/SpendCreateComponent";
+import SpendEditComponent from "./components/SpendEditComponent";
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -29,6 +30,12 @@ const router = new VueRouter({
             path: '/spend/create',
             name: 'spend.create',
             component: SpendCreateComponent
+        },
+        {
+            path: '/spend/:spendId/edit',
+            name: 'spend.edit',
+            component: SpendEditComponent,
+            props: true
         },
     ]
 });

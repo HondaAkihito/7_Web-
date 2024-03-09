@@ -37,7 +37,9 @@
                   <td class="text-center align-middle">0円</td>
                   <td class="text-center align-middle">タイトル</td>
                   <td class="text-center align-middle">
-                    <button class="btn btn-secondary">編集</button>
+                    <router-link v-bind:to="{name: 'spend.edit', params: {spendId: 1}}">
+                      <button class="btn btn-secondary">編集</button>
+                    </router-link>
                     <button class="btn btn-danger">削除</button>
                   </td>
                 </tr>
@@ -47,7 +49,9 @@
                   <td class="text-center align-middle">0円</td>
                   <td class="text-center align-middle">タイトル</td>
                   <td class="text-center align-middle">
-                    <button class="btn btn-secondary">編集</button>
+                    <router-link v-bind:to="{name: 'spend.edit', params: {spendId: 2}}">
+                        <button class="btn btn-secondary">編集</button>
+                    </router-link>
                     <button class="btn btn-danger">削除</button>
                   </td>
                 </tr>
