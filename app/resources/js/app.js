@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import '../honaki_assets/css/style.css';
 import HeaderComponent from "./components/HeaderComponent";
 import BeforeHeaderComponent from "./components/BeforeHeaderComponent";
 import TopComponent from "./components/TopComponent";
 import BudgetCreateComponent from "./components/BudgetCreateComponent";
 import SpendCreateComponent from "./components/SpendCreateComponent";
 import SpendEditComponent from "./components/SpendEditComponent";
+import ProfileComponent from "./components/ProfileComponent";
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -36,6 +38,11 @@ const router = new VueRouter({
             name: 'spend.edit',
             component: SpendEditComponent,
             props: true
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: ProfileComponent,
         },
     ]
 });
