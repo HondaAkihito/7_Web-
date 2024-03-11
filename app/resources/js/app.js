@@ -10,6 +10,7 @@ import SpendEditComponent from "./components/SpendEditComponent";
 import ProfileComponent from "./components/ProfileComponent";
 import ProfileFileEditComponent from "./components/ProfileFileEditComponent";
 import ErrorComponent from "./components/ErrorComponent";
+import Ad_HeaderComponent from "./components/admin/Ad_HeaderComponent.vue";
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -74,6 +75,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('header-component', HeaderComponent);
 Vue.component('before-header-component', BeforeHeaderComponent);
 Vue.component('top-component', TopComponent);
+Vue.component('ad-header-component', Ad_HeaderComponent);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
