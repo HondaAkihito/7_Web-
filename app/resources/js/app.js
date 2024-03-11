@@ -8,6 +8,7 @@ import BudgetCreateComponent from "./components/BudgetCreateComponent";
 import SpendCreateComponent from "./components/SpendCreateComponent";
 import SpendEditComponent from "./components/SpendEditComponent";
 import ProfileComponent from "./components/ProfileComponent";
+import ProfileFileEditComponent from "./components/ProfileFileEditComponent";
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -43,6 +44,11 @@ const router = new VueRouter({
             path: '/profile',
             name: 'profile',
             component: ProfileComponent,
+        },
+        {
+            path: '/profile/file/edit',
+            name: 'profile.file.edit',
+            component: ProfileFileEditComponent,
         },
     ]
 });
