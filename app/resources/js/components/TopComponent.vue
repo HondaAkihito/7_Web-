@@ -5,14 +5,14 @@
                 <table class="table border">
                   <thead>
                     <tr>
-                      <th scope="col" class="text-center">残り期間</th>
+                      <th scope="col" class="text-center">期間</th>
                       <th scope="col" class="text-center">残り予算</th>
                       <th scope="col" class="text-center">1日あたり</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="budget in budgets" :key="budget">
-                      <td class="text-center">{{ budget.title }}</td>
+                      <td class="text-center">{{ budget.from_date }} ~ {{ budget.to_date }}</td>
                       <td class="text-center">{{ budget.amount }}</td>
                       <td class="text-center">{{ budget.amount }} / day</td>
                     </tr>

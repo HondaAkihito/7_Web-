@@ -962,7 +962,7 @@ var render = function render() {
       key: budget
     }, [_c("td", {
       staticClass: "text-center"
-    }, [_vm._v(_vm._s(budget.title))]), _vm._v(" "), _c("td", {
+    }, [_vm._v(_vm._s(budget.from_date) + " ~ " + _vm._s(budget.to_date))]), _vm._v(" "), _c("td", {
       staticClass: "text-center"
     }, [_vm._v(_vm._s(budget.amount))]), _vm._v(" "), _c("td", {
       staticClass: "text-center"
@@ -977,7 +977,7 @@ var staticRenderFns = [function () {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("残り期間")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("期間")]), _vm._v(" "), _c("th", {
     staticClass: "text-center",
     attrs: {
       scope: "col"
