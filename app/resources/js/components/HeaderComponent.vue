@@ -4,6 +4,9 @@
             <nav class="navbar navbar-dark">
                 <span class="navbar-brand mb-0 h1">Budget Management</span>
                 <div>
+                    <router-link v-bind:to="{name: 'top'}">
+                        <button class="btn btn-success">予算</button>
+                    </router-link>
                     <router-link v-bind:to="{name: 'budget.create'}">
                         <button class="btn btn-success">予算登録</button>
                     </router-link>

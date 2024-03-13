@@ -11,10 +11,10 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="text-center">○~○</td>
-                      <td class="text-center">0円</td>
-                      <td class="text-center">○円 / day</td>
+                    <tr v-for="(budget, index) in budgets" :key="index">
+                      <td class="text-center">{{ budget.title }}</td>
+                      <td class="text-center">{{ budget.amount }}</td>
+                      <td class="text-center">{{ budget.amount }} / day</td>
                     </tr>
                   </tbody>
                 </table>
@@ -25,5 +25,22 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+          data: function () {
+              return {
+                  budgets: []
+            }
+        },
+        methods: {
+              getBudgets() {
+                  axios.get('/api/top')
+                    .then((res) => {
+                          this.budgets = res.data;
+                    });
+            }
+        },
+        mounted() {
+              this.getBudgets();
+        }
+    }
 </script>

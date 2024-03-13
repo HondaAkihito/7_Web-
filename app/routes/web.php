@@ -19,5 +19,3 @@ use App\Http\Controllers\CrudController;
 Route::get('/{any}', function() {
     return view('./app');
 })->where('any', '.*');
-
-Route::resource('/', 'CrudController@index', ['only' => ['index']]);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Budget;
 use App\Spending;
 
@@ -15,7 +16,10 @@ class CrudController extends Controller
      */
     public function index()
     {
-
+        $budget = new Budget;
+        $budgets = $budget->first()->get(); //最初の1行のみ
+        return $budgets;
+        // =return Budget::all();
     }
 
     /**

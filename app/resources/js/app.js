@@ -28,6 +28,11 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         {
+            path: '/top',
+            name: 'top',
+            component: TopComponent
+        },
+        {
             path: '/budget/create',
             name: 'budget.create',
             component: BudgetCreateComponent

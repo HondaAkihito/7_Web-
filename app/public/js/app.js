@@ -155,7 +155,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      budgets: []
+    };
+  },
+  methods: {
+    getBudgets: function getBudgets() {
+      var _this = this;
+      axios.get('/api/top').then(function (res) {
+        _this.budgets = res.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getBudgets();
+  }
+});
 
 /***/ }),
 
@@ -412,6 +429,14 @@ var render = function render() {
   }, [_c("span", {
     staticClass: "navbar-brand mb-0 h1"
   }, [_vm._v("Budget Management")]), _vm._v(" "), _c("div", [_c("router-link", {
+    attrs: {
+      to: {
+        name: "top"
+      }
+    }
+  }, [_c("button", {
+    staticClass: "btn btn-success"
+  }, [_vm._v("予算")])]), _vm._v(" "), _c("router-link", {
     attrs: {
       to: {
         name: "budget.create"
@@ -837,11 +862,6 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
   return _c("div", {
     staticClass: "container-fluid mb-3"
   }, [_c("div", {
@@ -850,7 +870,22 @@ var staticRenderFns = [function () {
     staticClass: "navbar"
   }, [_c("table", {
     staticClass: "table border"
-  }, [_c("thead", [_c("tr", [_c("th", {
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.budgets, function (budget, index) {
+    return _c("tr", {
+      key: index
+    }, [_c("td", {
+      staticClass: "text-center"
+    }, [_vm._v(_vm._s(budget.title))]), _vm._v(" "), _c("td", {
+      staticClass: "text-center"
+    }, [_vm._v(_vm._s(budget.amount))]), _vm._v(" "), _c("td", {
+      staticClass: "text-center"
+    }, [_vm._v(_vm._s(budget.amount) + " / day")])]);
+  }), 0)])])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th", {
     staticClass: "text-center",
     attrs: {
       scope: "col"
@@ -865,13 +900,7 @@ var staticRenderFns = [function () {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("1日あたり")])])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("td", {
-    staticClass: "text-center"
-  }, [_vm._v("○~○")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center"
-  }, [_vm._v("0円")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center"
-  }, [_vm._v("○円 / day")])])])])])])]);
+  }, [_vm._v("1日あたり")])])]);
 }];
 render._withStripped = true;
 
@@ -1071,6 +1100,10 @@ vue__WEBPACK_IMPORTED_MODULE_12__["default"].use(vue_router__WEBPACK_IMPORTED_MO
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_13__["default"]({
   mode: 'history',
   routes: [{
+    path: '/top',
+    name: 'top',
+    component: _components_TopComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }, {
     path: '/budget/create',
     name: 'budget.create',
     component: _components_BudgetCreateComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
