@@ -15,5 +15,7 @@
 //     return view('welcome');
 // });
 Route::get('/{any}', function() {
-    return view('./admin/admin');
+    return view('./app');
 })->where('any', '.*');
+
+Route::resource('/', 'CrudController@index', ['only' => ['index']]);
