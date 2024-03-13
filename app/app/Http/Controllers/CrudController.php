@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Budget;
+use App\Spending;
 
 class CrudController extends Controller
 {
@@ -13,7 +15,7 @@ class CrudController extends Controller
      */
     public function index()
     {
-        return Task::all();
+
     }
 
     /**
