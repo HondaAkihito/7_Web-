@@ -11,7 +11,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(budget, index) in budgets" :key="index">
+                    <tr v-for="budget in budgets" :key="budget">
                       <td class="text-center">{{ budget.title }}</td>
                       <td class="text-center">{{ budget.amount }}</td>
                       <td class="text-center">{{ budget.amount }} / day</td>
@@ -21,7 +21,6 @@
             </nav>
         </div>
     </div>
-
 </template>
 
 <script>

@@ -18,4 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('/top', 'CrudController');
-// =Route::get('/top', 'CrudController@index');
+// = Route::get('/top', 'CrudController@index');
+Route::resource('/budget_create', 'CrudController');
+// = Route::post('/budget/create', 'CrudController@store');

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Budget;
 use App\Spending;
+
+use Illuminate\Http\Request;
 
 class CrudController extends Controller
 {
@@ -17,7 +17,7 @@ class CrudController extends Controller
     public function index()
     {
         $budget = new Budget;
-        $budgets = $budget->first()->get(); //最初の1行のみ
+        $budgets = $budget->limit(1)->get(); //最初の1行のみ
         return $budgets;
         // =return Budget::all();
     }
@@ -40,7 +40,14 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $budget = new Budget;
+        $budget->title = $request->title;
+        $budget->amount = $request->amount;
+        $budget->from_date = $request->from_date;
+        $budget->to_date = $request->to_date;
+        $budget->save();
+        return $budget;
+        // = return Budget::create($request->all());
     }
 
     /**

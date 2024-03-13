@@ -27,7 +27,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      budget: {}
+    };
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+      axios.post('/api/budget_create', this.budget).then(function (res) {
+        _this.$router.push({
+          name: 'top'
+        });
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -256,27 +272,44 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
   return _c("div", {
     staticClass: "container"
   }, [_c("h2", {
     staticClass: "mt-5 text-center"
-  }, [_vm._v("予算登録")]), _vm._v(" "), _c("form", [_c("div", {
+  }, [_vm._v("予算登録")]), _vm._v(" "), _c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.submit.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
       "for": "category-title"
     }
   }, [_vm._v("タイトル")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.budget.title,
+      expression: "budget.title"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text",
-      id: "category-title",
+      id: "title",
       placeholder: "予算のタイトルを入力"
+    },
+    domProps: {
+      value: _vm.budget.title
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.budget, "title", $event.target.value);
+      }
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
@@ -285,11 +318,26 @@ var staticRenderFns = [function () {
       "for": "category-budget"
     }
   }, [_vm._v("予算")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.budget.amount,
+      expression: "budget.amount"
+    }],
     staticClass: "form-control",
     attrs: {
-      type: "number",
-      id: "category-budget",
+      type: "text",
+      id: "amount",
       placeholder: "予算を入力"
+    },
+    domProps: {
+      value: _vm.budget.amount
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.budget, "amount", $event.target.value);
+      }
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
@@ -298,28 +346,67 @@ var staticRenderFns = [function () {
       "for": "category-date"
     }
   }, [_vm._v("期間")]), _c("br"), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.budget.from_date,
+      expression: "budget.from_date"
+    }],
     attrs: {
       type: "date",
-      id: "category-form_date"
+      id: "from_date"
+    },
+    domProps: {
+      value: _vm.budget.from_date
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.budget, "from_date", $event.target.value);
+      }
     }
   }), _vm._v(" ~ \n            "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.budget.to_date,
+      expression: "budget.to_date"
+    }],
     attrs: {
       type: "date",
-      id: "category-to_date"
+      id: "to_date"
+    },
+    domProps: {
+      value: _vm.budget.to_date
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.budget, "to_date", $event.target.value);
+      }
     }
-  })]), _vm._v(" "), _c("div", [_c("button", {
+  })]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1)]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", [_c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("登録")])])]), _vm._v(" "), _c("form", [_c("div", {
+  }, [_vm._v("登録")])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("form", [_c("div", {
     staticClass: "text-right"
   }, [_c("button", {
     staticClass: "btn btn-danger",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("予算をリセットする")])])])]);
+  }, [_vm._v("予算をリセットする")])])]);
 }];
 render._withStripped = true;
 
@@ -870,9 +957,9 @@ var render = function render() {
     staticClass: "navbar"
   }, [_c("table", {
     staticClass: "table border"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.budgets, function (budget, index) {
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.budgets, function (budget) {
     return _c("tr", {
-      key: index
+      key: budget
     }, [_c("td", {
       staticClass: "text-center"
     }, [_vm._v(_vm._s(budget.title))]), _vm._v(" "), _c("td", {
@@ -1104,7 +1191,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_13__["default"]({
     name: 'top',
     component: _components_TopComponent__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
-    path: '/budget/create',
+    path: '/budget_create',
     name: 'budget.create',
     component: _components_BudgetCreateComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   }, {

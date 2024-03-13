@@ -33,7 +33,7 @@ const router = new VueRouter({
             component: TopComponent
         },
         {
-            path: '/budget/create',
+            path: '/budget_create',
             name: 'budget.create',
             component: BudgetCreateComponent
         },
