@@ -10,7 +10,8 @@ import SpendEditComponent from "./components/SpendEditComponent";
 import ProfileComponent from "./components/ProfileComponent";
 import ProfileFileEditComponent from "./components/ProfileFileEditComponent";
 import ErrorComponent from "./components/ErrorComponent";
-import Ad_HeaderComponent from "./components/admin/Ad_HeaderComponent.vue";
+import Ad_HeaderComponent from "./components/admin/Ad_HeaderComponent";
+import Ad_TopComponent from "./components/admin/Ad_TopComponent";
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -56,6 +57,11 @@ const router = new VueRouter({
             path: '/error',
             name: 'error',
             component: ErrorComponent,
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: Ad_TopComponent,
         },
     ]
 });
