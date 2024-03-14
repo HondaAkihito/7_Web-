@@ -158,6 +158,12 @@ __webpack_require__.r(__webpack_exports__);
           name: 'top'
         });
       });
+    },
+    deleteSpending: function deleteSpending(id) {
+      var _this3 = this;
+      axios["delete"]('/api/spend/create/' + id).then(function (res) {
+        _this3.getSpendings();
+      });
     }
   },
   mounted: function mounted() {
@@ -846,7 +852,12 @@ var render = function render() {
     }, [_c("button", {
       staticClass: "btn btn-secondary"
     }, [_vm._v("編集")])]), _vm._v(" "), _c("button", {
-      staticClass: "btn btn-danger"
+      staticClass: "btn btn-danger",
+      on: {
+        click: function click($event) {
+          return _vm.deleteSpending(spending.id);
+        }
+      }
     }, [_vm._v("削除")])], 1)]);
   }), 0)])])])]);
 };

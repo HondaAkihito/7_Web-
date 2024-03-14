@@ -40,7 +40,7 @@
                     <router-link v-bind:to="{name: 'spend.edit', params: {spendId: spending.id}}">
                       <button class="btn btn-secondary">編集</button>
                     </router-link>
-                    <button class="btn btn-danger">削除</button>
+                    <button class="btn btn-danger" v-on:click="deleteSpending(spending.id)">削除</button>
                   </td>
                 </tr>
               </tbody>
@@ -66,10 +66,16 @@
                     });
               },
               submit() {
-                axios.post('/api/spend/create', this.spending)
-                    .then((res) => {
-                        this.$router.push({name: 'top'});
-                    });
+                  axios.post('/api/spend/create', this.spending)
+                      .then((res) => {
+                          this.$router.push({name: 'top'});
+                      });
+              },
+              deleteSpending(id) {
+                  axios.delete('/api/spend/create/' + id)
+                      .then((res) => {
+                          this.getSpendings();
+                      });
               }
         },
         mounted() {

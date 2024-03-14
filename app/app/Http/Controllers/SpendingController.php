@@ -43,7 +43,7 @@ class SpendingController extends Controller
         $spending->date = $request->date;
 
         $budget = new Budget;
-        $budget_id = $budget->max('id'); //一番小さいidを取得(ユーザー制御でユーザーが持っている予算IDの中で一番小さいやつ、にする)
+        $budget_id = $budget->min('id'); //一番小さいidを取得(ユーザー制御でユーザーが持っている予算IDの中で一番小さいやつ、にする)
         $spending->budget_id = $budget_id;
 
         $spending->save();
@@ -90,8 +90,11 @@ class SpendingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        $spending = new Spending;
+        $record = $spending->find($id);
+        $record->delete();
+        return $record;
     }
 }
