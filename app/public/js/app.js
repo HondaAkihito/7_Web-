@@ -140,7 +140,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      spendings: []
+      spendings: [],
+      spending: {}
     };
   },
   methods: {
@@ -148,6 +149,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       axios.get('/api/spend/create').then(function (res) {
         _this.spendings = res.data;
+      });
+    },
+    submit: function submit() {
+      var _this2 = this;
+      axios.post('/api/spend/create', this.spending).then(function (res) {
+        _this2.$router.push({
+          name: 'top'
+        });
       });
     }
   },
@@ -717,7 +726,96 @@ var render = function render() {
     staticClass: "container"
   }, [_c("h2", {
     staticClass: "mt-5 text-center"
-  }, [_vm._v("新規支出登録")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+  }, [_vm._v("新規支出登録")]), _vm._v(" "), _c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.submit.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "category-title"
+    }
+  }, [_vm._v("タイトル")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.spending.title,
+      expression: "spending.title"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      id: "title",
+      placeholder: "予算のタイトルを入力"
+    },
+    domProps: {
+      value: _vm.spending.title
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.spending, "title", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "category-amount"
+    }
+  }, [_vm._v("支出金額")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.spending.amount,
+      expression: "spending.amount"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number",
+      id: "amount",
+      placeholder: "予算を入力"
+    },
+    domProps: {
+      value: _vm.spending.amount
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.spending, "amount", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "category-date"
+    }
+  }, [_vm._v("日付")]), _c("br"), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.spending.date,
+      expression: "spending.date"
+    }],
+    attrs: {
+      type: "date",
+      id: "date"
+    },
+    domProps: {
+      value: _vm.spending.date
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.spending, "date", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("div", {
     staticClass: "container mt-5"
   }, [_c("nav", {
     staticClass: "navbar"
@@ -755,49 +853,12 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("form", [_c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "category-title"
-    }
-  }, [_vm._v("タイトル")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "title",
-      placeholder: "予算のタイトルを入力"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "category-budget"
-    }
-  }, [_vm._v("支出金額")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "number",
-      id: "budget",
-      placeholder: "予算を入力"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "category-date"
-    }
-  }, [_vm._v("日付")]), _c("br"), _vm._v(" "), _c("input", {
-    attrs: {
-      type: "date",
-      id: "date"
-    }
-  })]), _vm._v(" "), _c("div", [_c("button", {
+  return _c("div", [_c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("登録")])])]);
+  }, [_vm._v("登録")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

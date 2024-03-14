@@ -23,3 +23,5 @@ Route::resource('/top', 'BudgetController'); // = Route::get('/top', 'BudgetCont
 Route::resource('/budget_create', 'BudgetController'); // = Route::post('/budget/create', 'BudgetController@store');
 // 支出一覧表示
 Route::resource('/spend/create', 'SpendingController'); // = Route::get('/spend/create', 'SpendingController@index');
+// 支出登録
+Route::post('/spend/create', 'SpendingController@store');

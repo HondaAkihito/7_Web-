@@ -1,18 +1,18 @@
 <template>
     <div class="container">
         <h2 class="mt-5 text-center">新規支出登録</h2>
-        <form>
+        <form v-on:submit.prevent="submit">
             <div class="form-group">
                 <label for="category-title">タイトル</label>
-                <input type="text" class="form-control" id="title" placeholder="予算のタイトルを入力">
+                <input type="text" class="form-control" id="title" placeholder="予算のタイトルを入力" v-model="spending.title">
             </div>
             <div class="form-group">
-                <label for="category-budget">支出金額</label>
-                <input type="number" class="form-control" id="budget" placeholder="予算を入力">
+                <label for="category-amount">支出金額</label>
+                <input type="number" class="form-control" id="amount" placeholder="予算を入力" v-model="spending.amount">
             </div>
             <div class="form-group">
                 <label for="category-date">日付</label><br>
-                <input type="date" id="date">
+                <input type="date" id="date" v-model="spending.date">
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">登録</button>
@@ -52,9 +52,10 @@
 
 <script>
     export default {
-          data: function () {
-              return {
-                  spendings: []
+        data: function () {
+            return {
+                spendings: [],
+                spending: {}
             }
         },
         methods: {
@@ -63,10 +64,18 @@
                     .then((res) => {
                           this.spendings = res.data;
                     });
-            }
+              },
+              submit() {
+                axios.post('/api/spend/create', this.spending)
+                    .then((res) => {
+                        this.$router.push({name: 'top'});
+                    });
+              }
         },
         mounted() {
               this.getSpendings();
         }
     }
+
+
 </script>

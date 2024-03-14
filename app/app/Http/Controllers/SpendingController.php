@@ -37,7 +37,17 @@ class SpendingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $spending = new Spending;
+        $spending->title = $request->title;
+        $spending->amount = $request->amount;
+        $spending->date = $request->date;
+
+        $budget = new Budget;
+        $budget_id = $budget->max('id'); //一番小さいidを取得(ユーザー制御でユーザーが持っている予算IDの中で一番小さいやつ、にする)
+        $spending->budget_id = $budget_id;
+
+        $spending->save();
+        return $spending;
     }
 
     /**
