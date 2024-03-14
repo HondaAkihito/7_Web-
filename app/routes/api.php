@@ -26,4 +26,4 @@ Route::resource('/spend/create', 'SpendingController'); // = Route::get('/spend/
 // 支出登録
 // 支出一覧とRoute::resourceが同じ // = Route::post('/spend/create', 'SpendingController@store');
 // 支出削除
-Route::delete('/spend/create/{create}', 'SpendingController@destroy');
+// Route::delete('/spend/create/{create}', 'SpendingController@destroy');
