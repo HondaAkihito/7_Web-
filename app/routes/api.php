@@ -17,7 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/top', 'CrudController');
-// = Route::get('/top', 'CrudController@index');
-Route::resource('/budget_create', 'CrudController');
-// = Route::post('/budget/create', 'CrudController@store');
+// 予算表示
+Route::resource('/top', 'BudgetController');
+// = Route::get('/top', 'BudgetController@index');
+// 予算登録
+Route::resource('/budget_create', 'BudgetController');
+// = Route::post('/budget/create', 'BudgetController@store');
+// 支出一覧表示
