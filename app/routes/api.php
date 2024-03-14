@@ -18,9 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // 予算表示
-Route::resource('/top', 'BudgetController');
-// = Route::get('/top', 'BudgetController@index');
+Route::resource('/top', 'BudgetController'); // = Route::get('/top', 'BudgetController@index');
 // 予算登録
-Route::resource('/budget_create', 'BudgetController');
-// = Route::post('/budget/create', 'BudgetController@store');
+Route::resource('/budget_create', 'BudgetController'); // = Route::post('/budget/create', 'BudgetController@store');
 // 支出一覧表示
+Route::resource('/spend/create', 'SpendingController'); // = Route::get('/spend/create', 'SpendingController@index');

@@ -31,26 +31,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td class="text-center align-middle">1</td>
-                  <td class="text-center align-middle">○~○</td>
-                  <td class="text-center align-middle">0円</td>
-                  <td class="text-center align-middle">タイトル</td>
+                <tr v-for="spending in spendings" :key="spending">
+                  <td class="text-center align-middle">{{ spending.id }}</td>
+                  <td class="text-center align-middle">{{ spending.date }}</td>
+                  <td class="text-center align-middle">{{ spending.amount }}</td>
+                  <td class="text-center align-middle">{{ spending.title }}</td>
                   <td class="text-center align-middle">
-                    <router-link v-bind:to="{name: 'spend.edit', params: {spendId: 1}}">
+                    <router-link v-bind:to="{name: 'spend.edit', params: {spendId: spending.id}}">
                       <button class="btn btn-secondary">編集</button>
-                    </router-link>
-                    <button class="btn btn-danger">削除</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center align-middle">2</td>
-                  <td class="text-center align-middle">○~○</td>
-                  <td class="text-center align-middle">0円</td>
-                  <td class="text-center align-middle">タイトル</td>
-                  <td class="text-center align-middle">
-                    <router-link v-bind:to="{name: 'spend.edit', params: {spendId: 2}}">
-                        <button class="btn btn-secondary">編集</button>
                     </router-link>
                     <button class="btn btn-danger">削除</button>
                   </td>
@@ -63,5 +51,22 @@
 </template>
 
 <script>
-    export default {}
+    export default {
+          data: function () {
+              return {
+                  spendings: []
+            }
+        },
+        methods: {
+              getSpendings() {
+                  axios.get('/api/spend/create')
+                    .then((res) => {
+                          this.spendings = res.data;
+                    });
+            }
+        },
+        mounted() {
+              this.getSpendings();
+        }
+    }
 </script>

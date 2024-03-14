@@ -137,7 +137,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      spendings: []
+    };
+  },
+  methods: {
+    getSpendings: function getSpendings() {
+      var _this = this;
+      axios.get('/api/spend/create').then(function (res) {
+        _this.spendings = res.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getSpendings();
+  }
+});
 
 /***/ }),
 
@@ -706,53 +723,34 @@ var render = function render() {
     staticClass: "navbar"
   }, [_c("table", {
     staticClass: "table border"
-  }, [_vm._m(1), _vm._v(" "), _c("tbody", [_c("tr", [_c("td", {
-    staticClass: "text-center align-middle"
-  }, [_vm._v("1")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center align-middle"
-  }, [_vm._v("○~○")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center align-middle"
-  }, [_vm._v("0円")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center align-middle"
-  }, [_vm._v("タイトル")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center align-middle"
-  }, [_c("router-link", {
-    attrs: {
-      to: {
-        name: "spend.edit",
-        params: {
-          spendId: 1
+  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.spendings, function (spending) {
+    return _c("tr", {
+      key: spending
+    }, [_c("td", {
+      staticClass: "text-center align-middle"
+    }, [_vm._v(_vm._s(spending.id))]), _vm._v(" "), _c("td", {
+      staticClass: "text-center align-middle"
+    }, [_vm._v(_vm._s(spending.date))]), _vm._v(" "), _c("td", {
+      staticClass: "text-center align-middle"
+    }, [_vm._v(_vm._s(spending.amount))]), _vm._v(" "), _c("td", {
+      staticClass: "text-center align-middle"
+    }, [_vm._v(_vm._s(spending.title))]), _vm._v(" "), _c("td", {
+      staticClass: "text-center align-middle"
+    }, [_c("router-link", {
+      attrs: {
+        to: {
+          name: "spend.edit",
+          params: {
+            spendId: spending.id
+          }
         }
       }
-    }
-  }, [_c("button", {
-    staticClass: "btn btn-secondary"
-  }, [_vm._v("編集")])]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-danger"
-  }, [_vm._v("削除")])], 1)]), _vm._v(" "), _c("tr", [_c("td", {
-    staticClass: "text-center align-middle"
-  }, [_vm._v("2")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center align-middle"
-  }, [_vm._v("○~○")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center align-middle"
-  }, [_vm._v("0円")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center align-middle"
-  }, [_vm._v("タイトル")]), _vm._v(" "), _c("td", {
-    staticClass: "text-center align-middle"
-  }, [_c("router-link", {
-    attrs: {
-      to: {
-        name: "spend.edit",
-        params: {
-          spendId: 2
-        }
-      }
-    }
-  }, [_c("button", {
-    staticClass: "btn btn-secondary"
-  }, [_vm._v("編集")])]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-danger"
-  }, [_vm._v("削除")])], 1)])])])])])]);
+    }, [_c("button", {
+      staticClass: "btn btn-secondary"
+    }, [_vm._v("編集")])]), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-danger"
+    }, [_vm._v("削除")])], 1)]);
+  }), 0)])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
