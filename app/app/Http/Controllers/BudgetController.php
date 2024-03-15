@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Budget;
 use App\Spending;
+use Illuminate\Support\Facades\Auth;
 
 class BudgetController extends Controller
 {
@@ -16,10 +17,16 @@ class BudgetController extends Controller
      */
     public function index()
     {
+        // 最新の1件
         $budget = new Budget;
-        $budgets = $budget->limit(1)->get(); //最初の1行のみ
+        $budgets = $budget->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
+        
+        
+        //最新の最初の1行のみ
+        // $id = Auth::id(); 
+        // $budgets = Budget::where('user_id', '=' , $id)->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
+
         return $budgets;
-        // =return Budget::all();
     }
 
     /**
@@ -45,6 +52,7 @@ class BudgetController extends Controller
         $budget->amount = $request->amount;
         $budget->from_date = $request->from_date;
         $budget->to_date = $request->to_date;
+        $budget->user_id = 1;
         $budget->save();
         return $budget;
         // = return Budget::create($request->all());

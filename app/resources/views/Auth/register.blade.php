@@ -16,18 +16,23 @@
 
   <div class="container">
     <h2 class="mt-5 text-center">新規登録</h2>
-    <form>
+    <form action="{{ route('register') }}" method="POST">
+      @csrf
       <div class="form-group">
-        <label for="exampleInputEmail1">メールアドレス</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="メールアドレスを入力">
+        <label for="email">メールアドレス</label>
+        <input type="text" class="form-control" id="email" name="email" placeholder="メールアドレスを入力">
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">パスワード</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="パスワードを入力">
+        <label for="name">ユーザー名</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="名前を入力"/>
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">パスワード再確認</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="上と同じパスワードを入力">
+        <label for="password">パスワード</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="パスワードを入力">
+      </div>
+      <div class="form-group">
+        <label for="password_confirmation">パスワード再確認</label>
+        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="上と同じパスワードを入力">
       </div>
       <div>
         <button type="submit" class="btn btn-primary">新規登録する</button>

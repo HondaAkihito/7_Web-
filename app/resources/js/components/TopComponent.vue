@@ -25,16 +25,16 @@
 
 <script>
     export default {
-          data: function () {
-              return {
-                  budgets: []
+        data: function () {
+            return {
+                budgets: []
             }
         },
         methods: {
-              getBudgets() {
-                  axios.get('/api/top')
+            getBudgets() {
+                axios.get('/api/top')
                     .then((res) => {
-                          this.budgets = res.data;
+                            this.budgets = res.data;
                     });
             }
         },

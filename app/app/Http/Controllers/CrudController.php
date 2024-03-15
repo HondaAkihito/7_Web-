@@ -16,10 +16,14 @@ class CrudController extends Controller
      */
     public function index()
     {
-        $budget = new Budget;
-        $budgets = $budget->limit(1)->get(); //最初の1行のみ
-        return $budgets;
-        // =return Budget::all();
+        // テーブルの1行目のamountカラムデータを取得
+        $a = DB::table('budgets')->value('amount');
+
+        // テーブルのamountカラwムデータのの合計を取得
+        $b = DB::table('spendings')->value(sum('amount'));
+
+        // 引き算
+        $ab = $a - $b;
     }
 
     /**
@@ -40,14 +44,6 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
-        $budget = new Budget;
-        $budget->title = $request->title;
-        $budget->amount = $request->amount;
-        $budget->from_date = $request->from_date;
-        $budget->to_date = $request->to_date;
-        $budget->save();
-        return $budget;
-        // = return Budget::create($request->all());
     }
 
     /**

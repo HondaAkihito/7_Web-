@@ -41,9 +41,11 @@ class SpendingController extends Controller
         $spending->title = $request->title;
         $spending->amount = $request->amount;
         $spending->date = $request->date;
-
+        
         $budget = new Budget;
-        $budget_id = $budget->min('id'); //一番小さいidを取得(ユーザー制御でユーザーが持っている予算IDの中で一番小さいやつ、にする)
+        $user_id = 1;
+        $budget_id = 1; //一番小さいidを取得(ユーザー制御でユーザーが持っている予算IDの中で一番小さいやつ、にする)
+        $spending->user_id = $user_id;
         $spending->budget_id = $budget_id;
 
         $spending->save();
