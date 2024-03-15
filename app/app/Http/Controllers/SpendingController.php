@@ -56,9 +56,11 @@ class SpendingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        $spending = new Spending;
+        $spending = $spending->find($id);
+        return $spending;
     }
 
     /**
@@ -69,7 +71,9 @@ class SpendingController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $spending = new Spending;
+        // $result = $spending->find($id);
+        // return $result;
     }
 
     /**
@@ -79,9 +83,21 @@ class SpendingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        // $id->update($request->all());
+        // return $id;
+
+        // $spending = new Spending;
+        // $record = $spending->find($id);
+
+        // $record->amount = $request->amount;
+        // $record->date = $request->date;
+        // $record->title = $request->title;
+        
+        // $record->save();
+
+        // return $record;
     }
 
     /**

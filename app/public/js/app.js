@@ -187,6 +187,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     spendId: String
+  },
+  data: function data() {
+    return {
+      spending: {}
+    };
+  },
+  methods: {
+    getSpending: function getSpending() {
+      var _this = this;
+      axios.get('/api/spend/:spendId/edit/' + this.spendId).then(function (res) {
+        _this.spending = res.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getSpending();
   }
 });
 
@@ -829,7 +845,7 @@ var render = function render() {
     staticClass: "table border"
   }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.spendings, function (spending) {
     return _c("tr", {
-      key: spending
+      key: _vm.index
     }, [_c("td", {
       staticClass: "text-center align-middle"
     }, [_vm._v(_vm._s(spending.id))]), _vm._v(" "), _c("td", {
@@ -931,6 +947,12 @@ var render = function render() {
       "for": "id"
     }
   }, [_vm._v("ID")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.spending.id,
+      expression: "spending.id"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text",
@@ -938,58 +960,97 @@ var render = function render() {
       readonly: ""
     },
     domProps: {
-      value: _vm.spendId
+      value: _vm.spending.id
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.spending, "id", $event.target.value);
+      }
     }
-  })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)])]);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
       "for": "category-title"
     }
   }, [_vm._v("タイトル")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.spending.title,
+      expression: "spending.title"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "text",
       id: "title"
+    },
+    domProps: {
+      value: _vm.spending.title
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.spending, "title", $event.target.value);
+      }
     }
-  })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
-      "for": "category-budget"
+      "for": "category-amount"
     }
   }, [_vm._v("支出金額")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.spending.amount,
+      expression: "spending.amount"
+    }],
     staticClass: "form-control",
     attrs: {
       type: "number",
-      id: "budget"
+      id: "amount"
+    },
+    domProps: {
+      value: _vm.spending.amount
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.spending, "amount", $event.target.value);
+      }
     }
-  })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {
       "for": "category-date"
     }
   }, [_vm._v("日付")]), _c("br"), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.spending.date,
+      expression: "spending.date"
+    }],
     attrs: {
       type: "date",
       id: "date"
+    },
+    domProps: {
+      value: _vm.spending.date
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.$set(_vm.spending, "date", $event.target.value);
+      }
     }
-  })]);
-}, function () {
+  })]), _vm._v(" "), _vm._m(0)])]);
+};
+var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", [_c("button", {

@@ -31,7 +31,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="spending in spendings" :key="spending">
+                <tr v-for="spending in spendings" :key="index">
                   <td class="text-center align-middle">{{ spending.id }}</td>
                   <td class="text-center align-middle">{{ spending.date }}</td>
                   <td class="text-center align-middle">{{ spending.amount }}</td>
