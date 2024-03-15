@@ -199,6 +199,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/spend/:spendId/edit/' + this.spendId).then(function (res) {
         _this.spending = res.data;
       });
+    },
+    submit: function submit() {
+      var _this2 = this;
+      axios.put('/api/spend/:spendId/edit/' + this.spendId, this.spending).then(function (res) {
+        _this2.$router.push({
+          name: 'spend.create'
+        });
+      });
     }
   },
   mounted: function mounted() {
@@ -940,7 +948,14 @@ var render = function render() {
     staticClass: "container"
   }, [_c("h2", {
     staticClass: "mt-5 text-center"
-  }, [_vm._v("支出編集")]), _vm._v(" "), _c("form", [_c("div", {
+  }, [_vm._v("支出編集")]), _vm._v(" "), _c("form", {
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.submit.apply(null, arguments);
+      }
+    }
+  }, [_c("div", {
     staticClass: "form-group"
   }, [_c("label", {
     attrs: {

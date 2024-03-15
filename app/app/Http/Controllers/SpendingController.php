@@ -88,16 +88,16 @@ class SpendingController extends Controller
         // $id->update($request->all());
         // return $id;
 
-        // $spending = new Spending;
-        // $record = $spending->find($id);
+        $spending = new Spending;
+        $record = $spending->find($id);
 
-        // $record->amount = $request->amount;
-        // $record->date = $request->date;
-        // $record->title = $request->title;
+        $record->amount = $request->amount;
+        $record->date = $request->date;
+        $record->title = $request->title;
         
-        // $record->save();
+        $record->save();
 
-        // return $record;
+        return $record;
     }
 
     /**

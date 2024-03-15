@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <h2 class="mt-5 text-center">支出編集</h2>
-        <form>
+        <form v-on:submit.prevent="submit">
             <div class="form-group">
                 <label for="id">ID</label>
                 <input type="text" class="form-control" id="id" readonly v-model="spending.id">
@@ -40,6 +40,12 @@
                 axios.get('/api/spend/:spendId/edit/' + this.spendId)
                     .then((res) => {
                         this.spending = res.data;
+                    });
+            },
+            submit() {
+                axios.put('/api/spend/:spendId/edit/' + this.spendId, this.spending)
+                    .then((res) => {
+                        this.$router.push({name: 'spend.create'})
                     });
             }
         },

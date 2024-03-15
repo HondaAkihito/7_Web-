@@ -27,5 +27,5 @@ Route::resource('/spend/create', 'SpendingController'); // = Route::get('/spend/
 // 支出一覧とRoute::resourceが同じ // = Route::post('/spend/create', 'SpendingController@store');
 // 支出削除
 // 支出一覧とRoute::resourceが同じ // = Route::delete('/spend/create/{create}', 'SpendingController@destroy');
-// 支出編集
+// 支出更新
 Route::resource('/spend/:spendId/edit', 'SpendingController'); // = Route::get('/spend/create', 'SpendingController@index');
