@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Budget;
 use App\Spending;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class SpendingController extends Controller
 {
@@ -16,7 +18,8 @@ class SpendingController extends Controller
      */
     public function index()
     {
-        return Spending::all();
+        $spending = Auth::user()->spending()->get();
+        return $spending;
     }
 
     /**
@@ -42,13 +45,10 @@ class SpendingController extends Controller
         $spending->amount = $request->amount;
         $spending->date = $request->date;
         
-        $budget = new Budget;
-        $user_id = 1;
         $budget_id = 1; //一番小さいidを取得(ユーザー制御でユーザーが持っている予算IDの中で一番小さいやつ、にする)
-        $spending->user_id = $user_id;
         $spending->budget_id = $budget_id;
 
-        $spending->save();
+        $spending = Auth::user()->budget()->save($spending);
         return $spending;
     }
 
@@ -60,9 +60,7 @@ class SpendingController extends Controller
      */
     public function show(int $id)
     {
-        $spending = new Spending;
-        $spending = $spending->find($id);
-        return $spending;
+        return Auth::user()->spending()->find($id);
     }
 
     /**
@@ -90,16 +88,15 @@ class SpendingController extends Controller
         // $id->update($request->all());
         // return $id;
 
-        $spending = new Spending;
-        $record = $spending->find($id);
+        $record = Auth::user()->spending()->find($id);
 
         $record->amount = $request->amount;
         $record->date = $request->date;
         $record->title = $request->title;
         
-        $record->save();
+        Auth::user()->spending()->save($record);
 
-        return $record;
+        return;
     }
 
     /**
@@ -110,8 +107,7 @@ class SpendingController extends Controller
      */
     public function destroy(int $id)
     {
-        $spending = new Spending;
-        $record = $spending->find($id);
+        $record = Auth::user()->spending()->find($id);
         $record->delete();
         return $record;
     }

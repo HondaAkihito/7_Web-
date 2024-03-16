@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Budget;
 use App\Spending;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class BudgetController extends Controller
@@ -52,8 +53,8 @@ class BudgetController extends Controller
         $budget->amount = $request->amount;
         $budget->from_date = $request->from_date;
         $budget->to_date = $request->to_date;
-        $budget->user_id = 1;
-        $budget->save();
+
+        Auth::user()->budget()->save($budget);
         return $budget;
         // = return Budget::create($request->all());
     }
