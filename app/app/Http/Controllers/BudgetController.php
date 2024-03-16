@@ -18,13 +18,13 @@ class BudgetController extends Controller
     public function index()
     {
         // 最新の1件
-        $budget = new Budget;
-        $budgets = $budget->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
+        // $budget = new Budget;
+        // $budgets = $budget->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
         
         
         //最新の最初の1行のみ
-        // $id = Auth::id(); 
-        // $budgets = Budget::where('user_id', '=' , $id)->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
+        $id = Auth::id(); 
+        $budgets = Budget::where('user_id', '=' , $id)->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
 
         return $budgets;
     }
