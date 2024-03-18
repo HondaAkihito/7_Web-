@@ -25,47 +25,39 @@ class BudgetController extends Controller
         // return $budgets;
         
         // ⭐️予算の表示 + 予算-支出合計=残り予算の表示
-        // // ①ログインユーザーの予算テーブルの一番古いamountカラムの値を取得
-        // $budgets = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('amount');
-        // // ②ログインユーザーの支出テーブamountカラムの合計値を取得
-        // $spendings = Auth::user()->spending()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->limit(1)->sum('amount');
-        // // ③(② - ①)の計算を$resultへ
-        // $result = $budgets - $spendings;
-        // // ④$resultを入れるログインユーザーの予算テーブルを取得
-        // $budget = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first();
-        // // ⑤④で取得したテーブルに、③の$resultを入れる、そして更新
-        // $budget->rest_amount = $result;
-        // Auth::user()->budget()->save($budget);
-        // // ⑥再度ログインユーザーの一番古い予算テーブルを取得してvueへreturn
-        // $budget = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->limit(1)->get();
-        // return $budget;
-
-        // // ⭐️OK/1day
-        // // ①現在の日の最初を取得
-        // $now = Carbon::today();
-        // // ②ログインユーザーの予算テーブルのto_dateカラムの値を取得
-        $to_date = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('to_date');
-        // $to_date = Carbon::parse($to_date)->endOfDay();
-        // // ③②-①の結果を$resultへ代入
-        // $result = $to_date - $now;
-        $date_diff = Carbon::today()->diffInDays(Carbon::parse($to_date)) + 1;
-        // // ④残り金額 / $resultで1日に使える金額を取得
-        $rest_amount = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('rest_amount');
-        $result = $rest_amount / $date_diff;
-
-        // ⑤④で取得したテーブルに、③の$resultを入れる、そして更新
+        // ①ログインユーザーの予算テーブルの一番古いamountカラムの値を取得
+        $budgets = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('amount');
+        // ②ログインユーザーの支出テーブamountカラムの合計値を取得
+        $spendings = Auth::user()->spending()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->limit(1)->sum('amount');
+        // ③(② - ①)の計算を$resultへ
+        $result = $budgets - $spendings;
+        // ④$resultを入れるログインユーザーの予算テーブルを取得
         $budget = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first();
+        // ⑤④で取得したテーブルに、③の$resultを入れる、そして更新
+        $budget->rest_amount = $result;
+        Auth::user()->budget()->save($budget);
+
+        // ⭐️OK/1day
+        // ①ログインユーザーの予算テーブルのto_dateカラムの値を取得
+        $to_date = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('to_date');
+        // ②本日の日にちを取得 = Carbon::today() 
+        // ③(①-②)を実行 = diffInDaysで差分を取得
+        // ④これだと0日の時に/0になってしまうため、最後に+1
+        // 例）現在18日・期限22日の場合、差分は4日になるが、18.19.20.21.22で日割り計算したいために+1する
+        $date_diff = Carbon::today()->diffInDays(Carbon::parse($to_date)) + 1;
+        // ⑤予算テーブルの「残り予算」カラムの値を取得
+        $rest_amount = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('rest_amount');
+        // ⑥(⑤/④)
+        $result = $rest_amount / $date_diff;
+        // ⑦更新先の予算テーブルを取得
+        $budget = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first();
+        // ⑧代入 更新
         $budget->day_amount = $result;
         Auth::user()->budget()->save($budget);
+
+        // ⭐️vueへ送るテーブル取得
         $budget = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->limit(1)->get();
         return $budget;
-
-
-        // // ⑤新規カラムに④を代入
-        // // ⑥ログインユーザーのテーブルを取得してvueへreturn
-
-        // $sabun = Carbon::create('2022-12-12')->diffInDays(Carbon::create('2022-12-31'));
-
     }
 
     /**
