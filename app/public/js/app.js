@@ -1114,7 +1114,7 @@ var render = function render() {
       staticClass: "text-center"
     }, [_vm._v(_vm._s(budget.rest_amount))]), _vm._v(" "), _c("td", {
       staticClass: "text-center"
-    }, [_vm._v(_vm._s(budget.amount) + " / day")])]);
+    }, [_vm._v(_vm._s(budget.day_amount) + " / day")])]);
   }), 0)])])])]);
 };
 var staticRenderFns = [function () {

@@ -14,7 +14,7 @@ class AddUserTable1dayAmount extends Migration
     public function up()
     {
         Schema::table('budgets', function (Blueprint $table) {
-            $table->integer('1day_amount')->nullable();
+            $table->integer('day_amount')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddUserTable1dayAmount extends Migration
     public function down()
     {
         Schema::table('budgets', function (Blueprint $table) {
-            //
+            
         });
     }
 }

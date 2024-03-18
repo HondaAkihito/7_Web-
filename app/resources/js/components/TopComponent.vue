@@ -16,7 +16,7 @@
                       <td class="text-center">{{ budget.from_date }} ~ {{ budget.to_date }}</td>
                       <td class="text-center">{{ budget.amount }}</td>
                       <td class="text-center">{{ budget.rest_amount }}</td>
-                      <td class="text-center">{{ budget.amount }} / day</td>
+                      <td class="text-center">{{ budget.day_amount }} / day</td>
                     </tr>
                   </tbody>
                 </table>
