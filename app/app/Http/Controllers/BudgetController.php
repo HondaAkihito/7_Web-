@@ -8,6 +8,7 @@ use App\Budget;
 use App\Spending;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class BudgetController extends Controller
 {
@@ -38,6 +39,19 @@ class BudgetController extends Controller
         // ⑥再度ログインユーザーの一番古い予算テーブルを取得してvueへreturn
         $budget = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->limit(1)->get();
         return $budget;
+
+        // // ⭐️OK/1day
+        // // ①現在の日の最初を取得
+        // $now = Carbon::parse(now())->startOfDay();
+        // // ②ログインユーザーの予算テーブルのto_dateカラムの値を取得
+        // $to_date = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('to_date');
+        // $to_date = Carbon::parse($to)->endOfDay();
+        // // ③②-①の結果を$resultへ代入
+        // $result = $to_date - $now;
+        // // ④残り金額 / $resultで1日に使える金額を取得
+        // // ⑤新規カラムに④を代入
+        // // ⑥ログインユーザーのテーブルを取得してvueへreturn
+
     }
 
     /**
