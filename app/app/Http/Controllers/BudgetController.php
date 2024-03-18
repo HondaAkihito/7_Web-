@@ -18,16 +18,26 @@ class BudgetController extends Controller
      */
     public function index()
     {
-        // 最新の1件
-        // $budget = new Budget;
-        // $budgets = $budget->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
-        
-        
         //最新の最初の1行のみ
-        $id = Auth::id(); 
-        $budgets = Budget::where('user_id', '=' , $id)->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
-
-        return $budgets;
+        // $id = Auth::id(); 
+        // $budgets = Budget::where('user_id', '=' , $id)->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
+        // return $budgets;
+        
+        // ⭐️予算の表示 + 予算-支出合計=残り予算の表示
+        // ①ログインユーザーの予算テーブルの一番古いamountカラムの値を取得
+        $budgets = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('amount');
+        // ②ログインユーザーの支出テーブamountカラムの合計値を取得
+        $spendings = Auth::user()->spending()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->limit(1)->sum('amount');
+        // ③(② - ①)の計算を$resultへ
+        $result = $budgets - $spendings;
+        // ④$resultを入れるログインユーザーの予算テーブルを取得
+        $budget = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first();
+        // ⑤④で取得したテーブルに、③の$resultを入れる、そして更新
+        $budget->rest_amount = $result;
+        Auth::user()->budget()->save($budget);
+        // ⑥再度ログインユーザーの一番古い予算テーブルを取得してvueへreturn
+        $budget = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->limit(1)->get();
+        return $budget;
     }
 
     /**

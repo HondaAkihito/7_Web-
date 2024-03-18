@@ -6,14 +6,16 @@
                   <thead>
                     <tr>
                       <th scope="col" class="text-center">期間</th>
-                      <th scope="col" class="text-center">残り予算</th>
-                      <th scope="col" class="text-center">1日あたり</th>
+                      <th scope="col" class="text-center">予算</th>
+                      <th scope="col" class="text-center">残り</th>
+                      <th scope="col" class="text-center">OK/day</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="budget in budgets" :key="budget">
+                    <tr v-for="budget in budgets" :key="index">
                       <td class="text-center">{{ budget.from_date }} ~ {{ budget.to_date }}</td>
                       <td class="text-center">{{ budget.amount }}</td>
+                      <td class="text-center">{{ budget.rest_amount }}</td>
                       <td class="text-center">{{ budget.amount }} / day</td>
                     </tr>
                   </tbody>

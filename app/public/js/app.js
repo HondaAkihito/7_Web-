@@ -1105,12 +1105,14 @@ var render = function render() {
     staticClass: "table border"
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.budgets, function (budget) {
     return _c("tr", {
-      key: budget
+      key: _vm.index
     }, [_c("td", {
       staticClass: "text-center"
     }, [_vm._v(_vm._s(budget.from_date) + " ~ " + _vm._s(budget.to_date))]), _vm._v(" "), _c("td", {
       staticClass: "text-center"
     }, [_vm._v(_vm._s(budget.amount))]), _vm._v(" "), _c("td", {
+      staticClass: "text-center"
+    }, [_vm._v(_vm._s(budget.rest_amount))]), _vm._v(" "), _c("td", {
       staticClass: "text-center"
     }, [_vm._v(_vm._s(budget.amount) + " / day")])]);
   }), 0)])])])]);
@@ -1128,12 +1130,17 @@ var staticRenderFns = [function () {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("残り予算")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("予算")]), _vm._v(" "), _c("th", {
     staticClass: "text-center",
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("1日あたり")])])]);
+  }, [_vm._v("残り")]), _vm._v(" "), _c("th", {
+    staticClass: "text-center",
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("OK/day")])])]);
 }];
 render._withStripped = true;
 
