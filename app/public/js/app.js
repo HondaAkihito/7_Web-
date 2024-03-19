@@ -110,7 +110,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      profiles: []
+    };
+  },
+  methods: {
+    getProfiles: function getProfiles() {
+      var _this = this;
+      axios.get('/api/profile').then(function (res) {
+        _this.profiles = res.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.getProfiles();
+  }
+});
 
 /***/ }),
 
@@ -638,20 +655,80 @@ var render = function render() {
     staticClass: "container"
   }, [_c("h2", {
     staticClass: "mt-5 text-center"
-  }, [_vm._v("プロフィール")]), _vm._v(" "), _c("form", [_vm._m(0), _vm._v(" "), _c("router-link", {
-    attrs: {
-      to: {
-        name: "profile.file.edit"
+  }, [_vm._v("プロフィール")]), _vm._v(" "), _vm._l(_vm.profiles, function (profile, index) {
+    return _c("form", {
+      key: index
+    }, [_vm._m(0, true), _vm._v(" "), _c("router-link", {
+      attrs: {
+        to: {
+          name: "profile.file.edit"
+        }
       }
-    }
-  }, [_c("div", {
-    staticClass: "mb-5 text-center"
-  }, [_c("button", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("編集")])])]), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm._m(2)], 1)]);
+    }, [_c("div", {
+      staticClass: "mb-5 text-center"
+    }, [_c("button", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        type: "submit"
+      }
+    }, [_vm._v("編集")])])]), _vm._v(" "), _c("div", {
+      staticClass: "form-group"
+    }, [_c("label", {
+      attrs: {
+        "for": "id"
+      }
+    }, [_vm._v("名前")]), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: profile.name,
+        expression: "profile.name"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        id: "name",
+        readonly: ""
+      },
+      domProps: {
+        value: profile.name
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(profile, "name", $event.target.value);
+        }
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "form-group"
+    }, [_c("label", {
+      attrs: {
+        "for": "id"
+      }
+    }, [_vm._v("メールアドレス")]), _vm._v(" "), _c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: profile.email,
+        expression: "profile.email"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text",
+        id: "email",
+        readonly: ""
+      },
+      domProps: {
+        value: profile.email
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.$set(profile, "email", $event.target.value);
+        }
+      }
+    })])], 1);
+  })], 2);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -665,33 +742,6 @@ var staticRenderFns = [function () {
       alt: "Profile Picture"
     }
   })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", {
-    attrs: {
-      "for": "id"
-    }
-  }, [_vm._v("メールアドレス")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      id: "email",
-      readonly: "",
-      value: "Sample@gmail.com"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", [_c("button", {
-    staticClass: "btn btn-danger",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("ログアウト")])]);
 }];
 render._withStripped = true;
 

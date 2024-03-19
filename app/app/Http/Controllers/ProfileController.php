@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Budget;
-use App\Spending;
-
 use Illuminate\Http\Request;
 
-class CrudController extends Controller
+use Illuminate\Support\Facades\Auth;
+use App\Budget;
+use App\Spending;
+use App\User;
+use Carbon\Carbon;
+
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +19,18 @@ class CrudController extends Controller
      */
     public function index()
     {
-        // テーブルの1行目のamountカラムデータを取得
-        $a = DB::table('budgets')->value('amount');
+        if (Auth::check()) {
+            // ユーザーはログイン済み
+            // $profile = Auth::user()->get();
+            // $profile = Auth::guard('api')->user()->get();
+            // $profile = Auth::guard('api')->user()->get();
+            // $profile = Auth::guard('api')->user()->get();
+            // →これらはユーザー情報を取得できなかった
 
-        // テーブルのamountカラwムデータのの合計を取得
-        $b = DB::table('spendings')->value(sum('amount'));
-
-        // 引き算
-        $ab = $a - $b;
+            $id = Auth::id(); 
+            $profile = User::where('id', $id)->get();
+            return $profile;
+        }
     }
 
     /**
@@ -44,6 +51,7 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**

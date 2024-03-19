@@ -23,7 +23,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function() {
+
+Route::group(['middleware' => 'auth'], function () {
+    // your route here
     // 予算表示
     Route::resource('/top', 'BudgetController'); // = Route::get('/top', 'BudgetController@index');
     // オール削除
@@ -38,8 +40,11 @@ Route::group(['middleware' => 'auth'], function() {
     // 支出一覧とRoute::resourceが同じ // = Route::delete('/spend/create/{create}', 'SpendingController@destroy');
     // 支出更新(個別)
     Route::resource('/spend/:spendId/edit', 'SpendingController'); // = Route::get('/spend/create', 'SpendingController@index');
-    // 支出個別削除(個別)
+    
+    // マイページ一覧表示
+    Route::resource('/profile', 'ProfileController');
+    
 });
 
 
-    
+
