@@ -21,14 +21,15 @@ class BudgetController extends Controller
     {
         //最新の最初の1行のみ
         // $id = Auth::id(); 
-        // $budgets = Budget::where('user_id', '=' , $id)->orderBy('created_at', 'DESC')->orderBy('id', 'DESC')->limit(1)->get();
+        // $budgets = Budget::where('user_id', '=' , $id)->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('amount');
         // return $budgets;
         
         // ⭐️予算の表示 + 予算-支出合計=残り予算の表示
         // ①ログインユーザーの予算テーブルの一番古いamountカラムの値を取得
-        $budgets = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('amount');
+        // $types = Auth::user()->type()->where('category', $type)->get();
+        $budgets = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->value('amount');
         // ②ログインユーザーの支出テーブamountカラムの合計値を取得
-        $spendings = Auth::user()->spending()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->limit(1)->sum('amount');
+        $spendings = Auth::user()->spending()->sum('amount');
         // ③(② - ①)の計算を$resultへ
         $result = $budgets - $spendings;
         // ④$resultを入れるログインユーザーの予算テーブルを取得
@@ -39,14 +40,14 @@ class BudgetController extends Controller
 
         // ⭐️OK/1day
         // ①ログインユーザーの予算テーブルのto_dateカラムの値を取得
-        $to_date = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('to_date');
+        $to_date = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->value('to_date');
         // ②本日の日にちを取得 = Carbon::today() 
         // ③(①-②)を実行 = diffInDaysで差分を取得
         // ④これだと0日の時に/0になってしまうため、最後に+1
         // 例）現在18日・期限22日の場合、差分は4日になるが、18.19.20.21.22で日割り計算したいために+1する
         $date_diff = Carbon::today()->diffInDays(Carbon::parse($to_date)) + 1;
         // ⑤予算テーブルの「残り予算」カラムの値を取得
-        $rest_amount = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->first()->value('rest_amount');
+        $rest_amount = Auth::user()->budget()->orderBy('created_at', 'ASC')->orderBy('id', 'ASC')->value('rest_amount');
         // ⑥(⑤/④)
         $result = $rest_amount / $date_diff;
         // ⑦更新先の予算テーブルを取得
@@ -131,6 +132,13 @@ class BudgetController extends Controller
      */
     public function destroy($id)
     {
-        //
+    }
+
+    // オール削除関数
+    public function all_destroy()
+    {
+        Auth::user()->budget()->delete();
+        Auth::user()->spending()->delete();
+        return;
     }
 }

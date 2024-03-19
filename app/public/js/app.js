@@ -41,6 +41,9 @@ __webpack_require__.r(__webpack_exports__);
           name: 'top'
         });
       });
+    },
+    deleteBudgetSpending: function deleteBudgetSpending() {
+      axios["delete"]('/api/budget_create');
     }
   }
 });
@@ -441,7 +444,23 @@ var render = function render() {
         _vm.$set(_vm.budget, "to_date", $event.target.value);
       }
     }
-  })]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1)]);
+  })]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c("form", [_c("div", {
+    staticClass: "text-right"
+  }, [_c("router-link", {
+    attrs: {
+      to: "top"
+    }
+  }, [_c("button", {
+    staticClass: "btn btn-danger",
+    attrs: {
+      type: "submit"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.deleteBudgetSpending();
+      }
+    }
+  }, [_vm._v("予算をリセットする")])])], 1)])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -452,17 +471,6 @@ var staticRenderFns = [function () {
       type: "submit"
     }
   }, [_vm._v("登録")])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("form", [_c("div", {
-    staticClass: "text-right"
-  }, [_c("button", {
-    staticClass: "btn btn-danger",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("予算をリセットする")])])]);
 }];
 render._withStripped = true;
 

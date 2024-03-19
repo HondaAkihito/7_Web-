@@ -21,7 +21,9 @@
         </form>
         <form>
             <div class="text-right">
-                <button type="submit" class="btn btn-danger">予算をリセットする</button>
+                <router-link to="top">
+                    <button type="submit" class="btn btn-danger" v-on:click="deleteBudgetSpending()">予算をリセットする</button>
+                </router-link>
             </div>
         </form>
     </div>
@@ -40,6 +42,10 @@
                     .then((res) => {
                         this.$router.push({name: 'top'});
                     });
+            },
+            deleteBudgetSpending() {
+                axios.delete('/api/budget_create')
+
             }
         }
     }
