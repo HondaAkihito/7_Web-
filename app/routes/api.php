@@ -43,7 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
     
     // マイページ一覧表示
     Route::resource('/profile', 'ProfileController');
-    
+    // マイページ画像保存
+    Route::post('/profile/:profileId/edit', 'ProfileController@file_up');
 });
 
 

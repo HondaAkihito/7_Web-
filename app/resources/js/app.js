@@ -8,7 +8,7 @@ import BudgetCreateComponent from "./components/BudgetCreateComponent";
 import SpendCreateComponent from "./components/SpendCreateComponent";
 import SpendEditComponent from "./components/SpendEditComponent";
 import ProfileComponent from "./components/ProfileComponent";
-import ProfileFileEditComponent from "./components/ProfileFileEditComponent";
+import ProfileEditComponent from "./components/ProfileEditComponent";
 import ErrorComponent from "./components/ErrorComponent";
 import Ad_HeaderComponent from "./components/admin/Ad_HeaderComponent";
 import Ad_TopComponent from "./components/admin/Ad_TopComponent";
@@ -54,9 +54,10 @@ const router = new VueRouter({
             component: ProfileComponent,
         },
         {
-            path: '/profile/file/edit',
-            name: 'profile.file.edit',
-            component: ProfileFileEditComponent,
+            path: '/profile/:profileId/edit',
+            name: 'profile.edit',
+            component: ProfileEditComponent,
+            props: true
         },
         {
             path: '/error',

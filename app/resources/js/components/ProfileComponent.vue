@@ -3,9 +3,9 @@
         <h2 class="mt-5 text-center">プロフィール</h2>
         <form v-for="(profile, index) in profiles" :key="index">
             <div class="profile-picture mx-auto mt-3">
-                <img src="../../honaki_assets/sample.jpg" class="img-fluid" alt="Profile Picture">
+                <img v-bind:src="profile.file_path" class="img-fluid" alt="Profile Picture">
             </div>
-            <router-link v-bind:to="{name: 'profile.file.edit'}">
+            <router-link v-bind:to="{name: 'profile.edit', params: {profileId: profile.id}}">
                 <div class="mb-5 text-center"><button type="submit" class="btn btn-primary">編集</button></div>
             </router-link>
             <div class="form-group">

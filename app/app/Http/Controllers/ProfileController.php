@@ -21,7 +21,7 @@ class ProfileController extends Controller
     {
         if (Auth::check()) {
             // ユーザーはログイン済み
-            // $profile = Auth::user()->get();
+            // $profile = Auth::user();
             // $profile = Auth::guard('api')->user()->get();
             // $profile = Auth::guard('api')->user()->get();
             // $profile = Auth::guard('api')->user()->get();
@@ -31,6 +31,22 @@ class ProfileController extends Controller
             $profile = User::where('id', $id)->get();
             return $profile;
         }
+    }
+    
+    public function file_up()
+    {
+        $file_name = request()->file->getClientOriginalName();
+    
+        request()->file->storeAs('public/',$file_name);
+    
+        // $user = User::find(1);
+        $id = Auth::id(); 
+        $user = User::find($id);
+
+    
+        $user->update(['file_path' => '/storage/'.$file_name]);
+    
+        return $user;
     }
 
     /**
@@ -51,7 +67,15 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $user = new User;
+
+        // // name属性が'thumbnail'のinputタグをファイル形式に、画像をpublic/avatarに保存
+        // $image_path = $request->file('file')->store('public/avatar/');
+
+        // // 上記処理にて保存した画像に名前を付け、userテーブルのthumbnailカラムに、格納
+        // $user->file_name = basename($image_path);
+
+        // return $user->save(); 
     }
 
     /**
@@ -62,7 +86,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        return Auth::user()->find($id);
     }
 
     /**
@@ -85,7 +109,22 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // // ディレクトリ名
+        // $dir = 'img';
+
+        // // アップロードされたファイル名を取得
+        // $file_name = $request->file('file');
+
+        // // 取得したファイル名で保存
+        // // storage/app/public/任意のディレクトリ名/
+        // $request->file('file')->storeAs('public/' . $dir, $file_name);
+
+        // $image = User::where('id', $id);
+        // // $任意の変数名 = テーブルを操作するモデル名();
+        // // storage/app/public/任意のディレクトリ名/
+        // $image->file_name = $file_name;
+        // $image->file_path = 'storage/app/public/' . $dir . '/' . $file_name;
+        // return $image->save();
     }
 
     /**
